@@ -1,0 +1,12 @@
+function registration(A_imgpath,B_imgpath)
+A=imread(A_imgpath);
+B=imread(B_imgpath);
+cpselect(A,B);%选取特征点
+tform=cp2tform(fixedPoints1,movingPoints1,'projective');%构造tform结构体
+registered=imtransform(B,tform,'bicubic');%使用双三次内插法zoom
+figure;
+subplot(1,2,1),imshow(A);title('image A');
+subplot(1,2,2),imshow(registered);title('B registered');
+fixedPoints1
+movingPoints1%输出两组特征点位置参数
+end
